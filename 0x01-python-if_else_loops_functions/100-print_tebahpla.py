@@ -5,4 +5,5 @@ def print_reversed_alphabet():
             c = c - 32
         print("{}".format(chr(c)), end="")
 
+
 print_reversed_alphabet()
