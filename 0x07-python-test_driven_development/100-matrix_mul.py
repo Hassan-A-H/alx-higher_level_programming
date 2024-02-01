@@ -48,13 +48,6 @@ def matrix_mul(m_a, m_b):
     if len(m_a[0]) != len(m_b):
         raise ValueError("m_a and m_b can't be multiplied")
 
-    for row in m_a[1:]:
-        if len(row) != len(m_a[0]):
-            raise TypeError("each row of m_a must should be of the same size")
-
-    for row in m_b[1:]:
-        if len(row) != len(m_b[0]):
-            raise TypeError("each row of m_b must should be of the same size")
     inverted_b = []
     for r in range(len(m_b[0])):
         new_row = []
