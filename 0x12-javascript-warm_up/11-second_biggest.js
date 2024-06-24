@@ -5,12 +5,15 @@ const { argv } = require('node:process');
 if (argv.length <= 3) {
   console.log(0);
 } else {
-  let secondBiggest = 0;
-  let biggest = argv[2];
+  let secondBiggest = Number.MIN_SAFE_INTEGER;
+  let biggest = Number(argv[2]);
   for (let i = 3; i < argv.length; i++) {
-    if (argv[i] > biggest) {
+    const num = Number(argv[i]);
+    if (num > biggest) {
       secondBiggest = biggest;
-      biggest = argv[i];
+      biggest = num;
+    } else if (num > secondBiggest && num < biggest) {
+      secondBiggest = num;
     }
   }
   console.log(secondBiggest);
