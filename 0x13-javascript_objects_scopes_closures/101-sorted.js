@@ -10,4 +10,3 @@ for (const key in dict) {
   }
 }
 console.log(newObj);
-
