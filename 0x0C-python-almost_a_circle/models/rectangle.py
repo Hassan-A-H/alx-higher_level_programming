@@ -1,4 +1,4 @@
-#!/usr/in/python3
+#!/usr/bin/python3
 """
 Module that contains the Rectangle class, inheriting from Base.
 """
