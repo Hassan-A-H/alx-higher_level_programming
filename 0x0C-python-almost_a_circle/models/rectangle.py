@@ -95,12 +95,20 @@ class Rectangle(Base):
         Returns:
             int: The area of the rectangle (width * height).
         """
-        return self.__width * self.__height
+        return self.width * self.height
 
     def display(self):
         """
         Prints the Rectangle instance using the character `#` in stdout.
         The rectangle is printed based on its width and height.
         """
-        for _ in range(self.__height):
-            print("#" * self.__width)
+        for _ in range(self.height):
+            print("#" * self.width)
+
+    def __str__(self):
+        """
+        Returns a string representation of the Rectangle instance in the format:
+        [Rectangle] (<id>) <x>/<y> - <width>/<height>
+        """
+        return "[Rectangle] ({}) {}/{} - {}/{}".format \
+            (self.id, self.x, self.y, self.width, self.height)
