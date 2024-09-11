@@ -100,10 +100,12 @@ class Rectangle(Base):
     def display(self):
         """
         Prints the Rectangle instance using the character `#` in stdout.
-        The rectangle is printed based on its width and height.
+        The rectangle is printed based on its width, height, and
+        takes into account x and y for spacing.
         """
+        print("\n" * self.y, end="")
         for _ in range(self.height):
-            print("#" * self.width)
+            print(" " * self.x + "#" * self.width)
 
     def __str__(self):
         """
