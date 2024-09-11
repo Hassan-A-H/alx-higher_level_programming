@@ -107,8 +107,9 @@ class Rectangle(Base):
 
     def __str__(self):
         """
-        Returns a string representation of the Rectangle instance in the format:
-        [Rectangle] (<id>) <x>/<y> - <width>/<height>
+        Returns a string representation of the Rectangle instance
+        in the format:[Rectangle] (<id>) <x>/<y> - <width>/<height>
         """
-        return "[Rectangle] ({}) {}/{} - {}/{}".format \
-            (self.id, self.x, self.y, self.width, self.height)
+        return "[Rectangle] ({}) {}/{} - {}/{}".format(
+            self.id, self.x, self.y, self.width, self.height
+        )
