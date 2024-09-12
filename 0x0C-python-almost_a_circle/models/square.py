@@ -51,3 +51,36 @@ class Square(Rectangle):
         return ("[Square] ({}) {}/{} - {}".format(
             self.id, self.x, self.y, self.width)
         )
+
+    def update(self, *args, **kwargs):
+        """
+        Updates attributes of the Square instance using positional (*args)
+        or keyword arguments (**kwargs).
+
+        Args:
+        *args: Variable-length argument list, where:
+            1st argument represents id,
+            2nd argument represents size (both width and height),
+            3rd argument represents x-coordinate,
+            4th argument represents y-coordinate.
+        **kwargs: Key-value pairs to update attributes. Keys can be:
+            'id', 'size', 'x', or 'y'. Keyword arguments are processed
+            only if *args is empty.
+        """
+
+        if args:
+            lst_attr = ["id", "size", "x", "y"]
+            for i in range(len(args)):
+                if lst_attr[i] == "size":
+                    setattr(self, "width", args[i])
+                    setattr(self, "height", args[i])
+                else:
+                    setattr(self, lst_attr[i], args[i])
+
+        else:
+            for key, val in kwargs.items():
+                if key == "size":
+                    setattr(self, "weightt", val)
+                    setattr(self, "height", val)
+                else:
+                    setattr(self, key, val)
