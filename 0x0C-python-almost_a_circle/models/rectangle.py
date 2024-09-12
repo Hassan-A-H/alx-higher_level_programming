@@ -116,10 +116,11 @@ class Rectangle(Base):
             self.id, self.x, self.y, self.width, self.height
         )
 
-    def update(self, *args):
+    def update(self, *args, **kwargs):
         """
-        Updates attributes of the Rectangle instance based on the no-keyword
-        arguments passed.
+        Updates attributes of the Rectangle instance based on the positional
+ (*args)
+        or keyword arguments (**kwargs).
 
         Args:
         *args: Variable length argument list, where:
@@ -128,8 +129,14 @@ class Rectangle(Base):
             3rd is height,
             4th is x,
             5th is y.
+        **kwargs: Key/value pairs to update attributes, where keys represent
+                  attribute names.
+                  Keyword arguments are processed only if *args is empty.
         """
         if args:
             lst_attr = ["id", "width", "height", "x", "y"]
             for i in range(len(args)):
                 setattr(self, lst_attr[i], args[i])
+        else:
+            for key, val in kwargs.items():
+                setattr(self, key, val)
