@@ -140,3 +140,24 @@ class Rectangle(Base):
         else:
             for key, val in kwargs.items():
                 setattr(self, key, val)
+
+    def to_dictionary(self):
+        """
+        Returns the dictionary representation of the Square instance.
+
+        The dictionary will have the following keys: 'id', 'size', 'x', 'y'.
+        The 'size' key corresponds to both the width and height (since it's
+        a square).
+
+        Returns:
+        dict: A dictionary containing the attributes of the Square.
+        """
+        lst_attr = ["id", "size", "x", "y"]
+        to_dict = {}
+
+        for key in lst_attr:
+            if key == "size":
+                to_dict[key] = getattr(self, "width")
+            else:
+                to_dict[key] = getattr(self, key)
+        return to_dict
