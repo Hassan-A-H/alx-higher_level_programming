@@ -4,6 +4,7 @@ Module that contains the Base class.
 This is the base class for managing the `id` attribute for future classes.
 """
 import json
+import os.path
 
 
 class Base:
@@ -90,6 +91,29 @@ class Base:
 
         with open(filename, "w") as f:
             f.write(json_str)
+
+    @classmethod
+    def load_from_file(cls):
+        """
+        Reads the JSON string representation of objects from a file and
+        returns a list of instances of cls.
+
+        Returns:
+        list: A list of instances of cls loaded from the file. If the file
+        doesn't exist, returns an empty list.
+        """
+        filename = "{}.json".format(cls.__name__)
+
+        if not os.path.exists(filename):
+            return []
+
+        with open(filename) as f:
+            lst_str = f.read()
+
+        lst_cls = cls.from_json_string(lst_str)
+        lst_objs = [cls.create(**obj_dct) for obj_dct in lst_cls]
+
+        return lst_objs
 
     @classmethod
     def create(cls, **dictionary):
