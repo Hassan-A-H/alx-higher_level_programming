@@ -152,12 +152,10 @@ class Rectangle(Base):
         Returns:
         dict: A dictionary containing the attributes of the Square.
         """
-        lst_attr = ["id", "size", "x", "y"]
-        to_dict = {}
-
-        for key in lst_attr:
-            if key == "size":
-                to_dict[key] = getattr(self, "width")
-            else:
-                to_dict[key] = getattr(self, key)
-        return to_dict
+        return {
+            'id': self.id,
+            'width': self.width,
+            'height': self.height,
+            'x': self.x,
+            'y': self.y
+        }
