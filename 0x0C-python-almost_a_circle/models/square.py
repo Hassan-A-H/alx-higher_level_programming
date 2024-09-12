@@ -85,7 +85,6 @@ class Square(Rectangle):
                 else:
                     setattr(self, key, val)
 
-
     def to_dictionary(self):
         """
         Returns the dictionary representation of the Square instance.
