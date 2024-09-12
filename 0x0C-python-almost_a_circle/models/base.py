@@ -5,6 +5,7 @@ This is the base class for managing the `id` attribute for future classes.
 """
 import json
 import os.path
+import csv
 
 
 class Base:
@@ -136,3 +137,60 @@ class Base:
             new = cls(2)
         new.update(**dictionary)
         return new
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """
+        Saves a list of objects to a CSV file.
+
+        Args:
+        list_objs (list): List of instances to save into the file.
+        Each instance must have a `to_dictionary()` method.
+        """
+        filename = "{}.csv".format(cls.__name__)
+
+        if cls.__name__ == "Rectangle":
+            fieldnames = ['id', 'width', 'height', 'x', 'y']
+        else:
+            fieldnames = ['id', 'size', 'x', 'y']
+
+        matrix = []
+
+        if list_objs:
+            for obj in list_objs:
+                obj_dict = obj.to_dictionary()
+                row = [obj_dict[key] for key in fieldnames]
+                matrix.append(row)
+
+        with open(filename, 'w', newline='') as writeFile:
+            writer = csv.writer(writeFile)
+            writer.writerows(matrix)
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """
+        Loads a list of instances from a CSV file.
+
+        Returns:
+        list: List of instances created from the CSV file.
+        """
+        filename = "{}.csv".format(cls.__name__)
+
+        if not os.path.exists(filename):
+            return []
+
+        with open(filename, 'r') as readFile:
+            reader = csv.reader(readFile)
+            csv_list = list(reader)
+
+        if cls.__name__ == "Rectangle":
+            list_keys = ['id', 'width', 'height', 'x', 'y']
+        else:
+            list_keys = ['id', 'size', 'x', 'y']
+
+        list_ins = []
+        for row in csv_list:
+            dict_csv = {key: int(value) for key, value in zip(list_keys, row)}
+            list_ins.append(cls.create(**dict_csv))
+
+        return list_ins
