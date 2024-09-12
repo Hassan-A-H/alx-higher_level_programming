@@ -1,5 +1,17 @@
 #!usr/bin/python3
 
+"""
+This module defines the Square class, which inherits from the Rectangle class.
+
+The Square class represents a square, which is a special kind of rectangle
+where the width and height are equal. This class inherits from the Rectangle
+class, utilizing its attributes and methods while simplifying width and height
+to a single size attribute.
+
+Classes:
+    Square: Defines a square that inherits from the Rectangle class.
+"""
+
 from models.rectangle import Rectangle
 
 
